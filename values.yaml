@@ -13,7 +13,7 @@ serviceAccount:
   name: ""
 
 ## Enable authentication
-usePassword: false
+usePassword: true
 
 ## MongoDB admin password
 mongodbRootUsername: root
