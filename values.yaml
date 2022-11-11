@@ -17,7 +17,7 @@ usePassword: false
 
 ## MongoDB admin password
 mongodbRootUsername: root
-mongodbRootPassword: ""
+mongodbRootPassword: "1234"
 
 ## Pod Security Context
 securityContext:
