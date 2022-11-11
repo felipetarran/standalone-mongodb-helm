@@ -1,0 +1,127 @@
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: mongo
+  tag: latest
+  pullPolicy: "IfNotPresent"
+
+imagePullSecrets: []
+
+serviceAccount:
+  create: true
+  name: ""
+
+## Enable authentication
+usePassword: false
+
+## MongoDB admin password
+mongodbRootUsername: root
+mongodbRootPassword: ""
+
+## Pod Security Context
+securityContext:
+  enabled: false
+  # fsGroup: 1001
+  # runAsUser: 1001
+
+## Kubernetes service type
+service:
+  name: ""
+  annotations: {}
+  type: ClusterIP
+  clusterIP: ""
+  port: 27017
+  nodePort: ""
+  externalIPs: []
+  loadBalancerIP: ""
+  loadBalancerSourceRanges: []
+
+# Annotations to be added to the deployment or statefulsets
+annotations: {}
+
+# Additional labels to apply to the deployment or statefulsets
+labels: {}
+
+# Annotations to be added to MongoDB pods
+podAnnotations: {}
+
+# Additional pod labels to apply
+podLabels: {}
+
+## Configure resource requests and limits
+resources: {}
+
+## Node selector
+nodeSelector: {}
+
+## Define Separate nodeSelector for secondaries
+nodeSelectorSecondary: {}
+
+## Define Separate nodeSelector for arbiter
+nodeSelectorArbiter: {}
+
+## Affinity
+affinity: {}
+
+# Define separate affinity for secondary pod
+affinitySecondary: {}
+
+# Define separate affinity for arbiter pod
+affinityArbiter: {}
+
+## Tolerations
+tolerations: []
+
+## updateStrategy for MongoDB Primary, Secondary and Arbitrer statefulsets
+updateStrategy:
+  type: RollingUpdate
+
+## Enable persistence using Persistent Volume Claims
+persistence:
+  mountPath: /data/db
+  subPath: ""
+  storageClassName: "standard"
+  accessModes: ["ReadWriteOnce"]
+  size: 2Gi
+
+## Configure extra options for liveness and readiness probes
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+# Storage class
+storageclass:
+  enabled: false
+  name: mongo
+  annotations: {}
+  provisioner: kubernetes.io/gce-pd
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  parameters:
+    type: pd-standard
+
+config:
+  storage:
+    directoryPerDB: false
+    journal:
+      enabled: true
+  systemLog:
+    verbosity: 0
+  security:
+    authorization: disabled
+  net:
+    ipv6: false
+    bindIpAll: true
