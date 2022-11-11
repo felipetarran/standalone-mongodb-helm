@@ -1,4 +1,3 @@
-{{- if .Values.replicaSet.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -21,4 +20,3 @@ spec:
   selector:
     app: {{ template "mongodb.name" . }}
     release: {{ .Release.Name }}
-{{- end }}

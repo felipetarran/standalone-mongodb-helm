@@ -27,7 +27,7 @@ securityContext:
 
 ## Kubernetes service type
 service:
-  name: ""
+  name: "mongo-svc"
   annotations: {}
   type: ClusterIP
   clusterIP: ""

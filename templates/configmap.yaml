@@ -84,16 +84,6 @@ data:
       maxIncomingConnections: {{ .Values.config.net.maxIncomingConnections }}
       {{- end }}
     # replica set options
-    {{- if .Values.replicaSet.enabled }}
-    replication:
-      replSetName: {{ .Values.replicaSet.name }}
-      {{- if .Values.replicaSet.enableMajorityReadConcern }}
-      enableMajorityReadConcern: {{ .Values.replicaSet.enableMajorityReadConcern }}
-      {{- end }}
-      {{- if .Values.replicaSet.oplogSizeMB }}
-      oplogSizeMB: {{ .Values.replicaSet.oplogSizeMB }}
-      {{- end }}
-    {{- end }}
     # process management options
     processManagement:
       fork: false
